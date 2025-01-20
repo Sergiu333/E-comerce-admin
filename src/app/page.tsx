@@ -37,7 +37,6 @@ export default function TransactionManagement() {
     eci: true,
     text: true,
   })
-console.log(filteredTransactions, "aasdas")
 
   const columns: Column[] = [
     { key: "STATUS", label: "Status" },
