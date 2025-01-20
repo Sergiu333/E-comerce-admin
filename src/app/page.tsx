@@ -119,58 +119,60 @@ export default function TransactionManagement() {
                     : < div className="flex flex-row gap-1">Arată Filtrele <Arrowbottom/></div>
                 }
               </button>
+              <div
+                  className={`transition-all duration-500 ease-in-out overflow-hidden ${showFilters ? 'h-[430px] sm:h-[250px] md:h-[200px] lg:h-[150px]' : 'h-0'}`}
+              >
+                {showFilters && (
+                    <div>
+                      <StatusLegend/>
+                      <div className="flex flex-wrap gap-4 mb-4 mt-6">
+                        <Select onValueChange={setFilter} placeholder="Toate tranzacțiile">
+                          <SelectItem value="">Toate tranzacțiile</SelectItem>
+                          <SelectItem value="Success">Success</SelectItem>
+                          <SelectItem value="Returnată">Returnate</SelectItem>
+                          <SelectItem value="Anulată">Anulate</SelectItem>
+                          <SelectItem value="Finalizată">Finalizate</SelectItem>
+                        </Select>
 
-              {showFilters && (
-                  <div>
-                    <StatusLegend />
-                    <div className="flex flex-wrap gap-4 mb-4 mt-6">
-                      <Select onValueChange={setFilter} placeholder="Toate tranzacțiile">
-                        <SelectItem value="">Toate tranzacțiile</SelectItem>
-                        <SelectItem value="Success">Success</SelectItem>
-                        <SelectItem value="Returnată">Returnate</SelectItem>
-                        <SelectItem value="Anulată">Anulate</SelectItem>
-                        <SelectItem value="Finalizată">Finalizate</SelectItem>
-                      </Select>
+                        <Select onValueChange={setTerminalFilter} placeholder="Selectează Terminal">
+                          <SelectItem value="">Toate terminalele</SelectItem>
+                          {terminals.map((terminal) => (
+                              <SelectItem key={terminal} value={terminal}>
+                                {terminal}
+                              </SelectItem>
+                          ))}
+                        </Select>
 
-                      <Select onValueChange={setTerminalFilter} placeholder="Selectează Terminal">
-                        <SelectItem value="">Toate terminalele</SelectItem>
-                        {terminals.map((terminal) => (
-                            <SelectItem key={terminal} value={terminal}>
-                              {terminal}
-                            </SelectItem>
+                        <Select onValueChange={setCountFilter} placeholder="Număr de tranzacții">
+                          <SelectItem value="all">Toate</SelectItem>
+                          <SelectItem value="10">Ultimele 10</SelectItem>
+                          <SelectItem value="50">Ultimele 50</SelectItem>
+                          <SelectItem value="100">Ultimele 100</SelectItem>
+                        </Select>
+                        <div className="flex items-center gap-2">
+                          <Checkbox
+                              id="reverseOrder"
+                              checked={isReversed}
+                              onChange={() => setIsReversed((prev) => !prev)}
+                              label="Inversare ordine"
+                          />
+                        </div>
+                      </div>
+
+                      <div className="flex flex-wrap gap-2 mb-4">
+                        {columns.map((column) => (
+                            <Checkbox
+                                key={column.key}
+                                id={column.key}
+                                checked={visibleColumns[column.key]}
+                                onChange={() => toggleColumn(column.key)}
+                                label={column.label}
+                            />
                         ))}
-                      </Select>
-
-                      <Select onValueChange={setCountFilter} placeholder="Număr de tranzacții">
-                        <SelectItem value="all">Toate</SelectItem>
-                        <SelectItem value="10">Ultimele 10</SelectItem>
-                        <SelectItem value="50">Ultimele 50</SelectItem>
-                        <SelectItem value="100">Ultimele 100</SelectItem>
-                      </Select>
-                      <div className="flex items-center gap-2">
-                        <Checkbox
-                            id="reverseOrder"
-                            checked={isReversed}
-                            onChange={() => setIsReversed((prev) => !prev)}
-                            label="Inversare ordine"
-                        />
                       </div>
                     </div>
-
-                    <div className="flex flex-wrap gap-2 mb-4">
-                      {columns.map((column) => (
-                          <Checkbox
-                              key={column.key}
-                              id={column.key}
-                              checked={visibleColumns[column.key]}
-                              onChange={() => toggleColumn(column.key)}
-                              label={column.label}
-                          />
-                      ))}
-                    </div>
-                  </div>
-              )}
-
+                )}
+              </div>
               <div className="rounded-md border border-gray-700 overflow-hidden">
                 <div className="overflow-x-auto custom-scrollbar">
                   <Table>
