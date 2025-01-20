@@ -17,7 +17,7 @@ export function Select({ onValueChange, placeholder, children }: SelectProps) {
     }
 
     return (
-        <div className="relative inline-block text-left">
+        <div className="relative inline-block text-left z-30">
             <div>
                 <button
                     type="button"

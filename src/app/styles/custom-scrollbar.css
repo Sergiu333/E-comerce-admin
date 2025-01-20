@@ -25,6 +25,20 @@
 }
 
 .custom-scrollbar {
-    max-height: 60vh;
+    max-height: 60vh!important;
     overflow-y: auto;
+}
+
+@media (min-width: 1024px) {
+    .custom-scrollbar {
+        max-height: 70vh;
+        overflow-y: auto;
+    }
+}
+
+.custom-scrollbar th {
+    position: sticky;
+    top: 0;
+    background-color: #2d3748; /* culoare de fundal pentru th */
+    z-index: 10; /* Asigură că antetul este deasupra conținutului */
 }
