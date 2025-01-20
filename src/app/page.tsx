@@ -111,7 +111,7 @@ export default function TransactionManagement() {
               <div className="flex flex-row gap-2 items-center">
                 <CardTitle>Tranzacții</CardTitle>
                 <button
-                    className="bg-blue-500 text-white px-4 py-2 rounded mb -4"
+                    className="bg-blue-500 text-white px-4 py-2 rounded"
                     onClick={() => setShowFilters(!showFilters)}
                 >
                   {showFilters ? <div className="flex flex-row gap-1">Ascunde Filtrele <ArrowTop/></div>

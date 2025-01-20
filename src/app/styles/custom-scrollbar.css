@@ -39,6 +39,6 @@
 .custom-scrollbar th {
     position: sticky;
     top: 0;
-    background-color: #2d3748; /* culoare de fundal pentru th */
-    z-index: 10; /* Asigură că antetul este deasupra conținutului */
+    background-color: #2d3748;
+    z-index: 10;
 }
