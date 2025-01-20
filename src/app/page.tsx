@@ -38,7 +38,7 @@ export default function TransactionManagement() {
     int_ref: true,
     timestamp: true,
     nonce: true,
-    p_sign: true,
+    p_sign: false,
     eci: true,
     text: true,
   })
@@ -108,17 +108,19 @@ export default function TransactionManagement() {
         <div className="container mx-auto px-4">
           <Card className="mb-6">
             <CardHeader>
-              <CardTitle>Tranzacții</CardTitle>
+              <div className="flex flex-row gap-2 items-center">
+                <CardTitle>Tranzacții</CardTitle>
+                <button
+                    className="bg-blue-500 text-white px-4 py-2 rounded mb -4"
+                    onClick={() => setShowFilters(!showFilters)}
+                >
+                  {showFilters ? <div className="flex flex-row gap-1">Ascunde Filtrele <ArrowTop/></div>
+                      : < div className="flex flex-row gap-1">Arată Filtrele <Arrowbottom/></div>
+                  }
+                </button>
+              </div>
             </CardHeader>
             <CardContent>
-              <button
-                  className="bg-blue-500 text-white px-4 py-2 rounded mb-4"
-                  onClick={() => setShowFilters(!showFilters)}
-              >
-                {showFilters ? <div className="flex flex-row gap-1">Ascunde Filtrele <ArrowTop/></div>
-                    : < div className="flex flex-row gap-1">Arată Filtrele <Arrowbottom/></div>
-                }
-              </button>
               <div
                   className={`transition-all duration-500 ease-in-out overflow-hidden ${showFilters ? 'h-[430px] sm:h-[250px] md:h-[200px] lg:h-[150px]' : 'h-0'}`}
               >
@@ -126,7 +128,7 @@ export default function TransactionManagement() {
                     <div>
                       <StatusLegend/>
                       <div className="flex flex-wrap gap-4 mb-4 mt-6">
-                        <Select onValueChange={setFilter} placeholder="Toate tranzacțiile">
+                      <Select onValueChange={setFilter} placeholder="Toate tranzacțiile">
                           <SelectItem value="">Toate tranzacțiile</SelectItem>
                           <SelectItem value="Success">Success</SelectItem>
                           <SelectItem value="Returnată">Returnate</SelectItem>
