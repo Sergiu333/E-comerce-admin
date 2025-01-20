@@ -21,40 +21,41 @@ export default function TransactionManagement() {
   const [selectedTransaction, setSelectedTransaction] = useState<Transaction | null>(null)
   const [visibleColumns, setVisibleColumns] = useState<{ [key: string]: boolean }>({
     STATUS: true,
-    TERMINAL: true,
-    TRTYPE: true,
+    terminal: true,
+    trtype: true,
     ORDER: true,
-    AMOUNT: true,
-    CURRENCY: true,
-    ACTION: true,
-    RC: true,
-    APPROVAL: true,
-    RRN: true,
-    INT_REF: true,
-    TIMESTAMP: true,
-    NONCE: true,
-    P_SIGN: true,
-    ECI: true,
-    TEXT: true,
+    amount: true,
+    currency: true,
+    action: true,
+    rc: true,
+    approval: true,
+    rrn: true,
+    int_ref: true,
+    timestamp: true,
+    nonce: true,
+    p_sign: true,
+    eci: true,
+    text: true,
   })
+console.log(filteredTransactions, "aasdas")
 
   const columns: Column[] = [
     { key: "STATUS", label: "Status" },
-    { key: "TERMINAL", label: "Terminal" },
-    { key: "TRTYPE", label: "TrType" },
+    { key: "terminal", label: "Terminal" },
+    { key: "trtype", label: "TrType" },
     { key: "ORDER", label: "Order" },
-    { key: "AMOUNT", label: "Amount" },
-    { key: "CURRENCY", label: "Currency" },
-    { key: "ACTION", label: "Action" },
-    { key: "RC", label: "RC" },
-    { key: "APPROVAL", label: "Approval" },
-    { key: "RRN", label: "RRN" },
-    { key: "INT_REF", label: "Int Ref" },
-    { key: "TIMESTAMP", label: "Timestamp" },
-    { key: "NONCE", label: "Nonce" },
-    { key: "P_SIGN", label: "P Sign" },
-    { key: "ECI", label: "ECI" },
-    { key: "TEXT", label: "Text" },
+    { key: "amount", label: "Amount" },
+    { key: "currency", label: "Currency" },
+    { key: "action", label: "Action" },
+    { key: "rc", label: "RC" },
+    { key: "approval", label: "Approval" },
+    { key: "rrn", label: "RRN" },
+    { key: "int_ref", label: "Int Ref" },
+    { key: "timestamp", label: "Timestamp" },
+    { key: "nonce", label: "Nonce" },
+    { key: "", label: "P Sign" },
+    { key: "eci", label: "ECI" },
+    { key: "text", label: "Text" },
   ]
 
   useEffect(() => {
@@ -168,7 +169,7 @@ export default function TransactionManagement() {
                                                   {status}
                                                 </div>
                                             ) : (
-                                                transaction[column.key.toLowerCase()]
+                                                transaction[column.key]
                                             )}
                                           </TableCell>
                                       ),

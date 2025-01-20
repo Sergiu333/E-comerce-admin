@@ -18,23 +18,31 @@ export default function TransactionModal({ transaction, onClose }: TransactionMo
         form.action = url
         form.method = "POST"
 
-        Object.entries(transaction).forEach(([key, value]) => {
-            const input = document.createElement("input")
-            input.type = "hidden"
-            input.name = key
-            input.value = value as string
-            form.appendChild(input)
-        })
+        form.innerHTML = `
+            <input type="hidden" name="AMOUNT" value="${transaction.amount}" />
+            <input type="hidden" name="CURRENCY" value="${transaction.currency}" />
+            <input type="hidden" name="ORDER" value="${transaction.ORDER}" />
+            <input type="hidden" name="DESC" value="${transaction.desc}" />
+            <input type="hidden" name="MERCH_NAME" value="${transaction.merch_name}" />
+            <input type="hidden" name="MERCH_URL" value="www.test.md" />
+            <input type="hidden" name="MERCHANT" value="${transaction.merchant}" />
+            <input type="hidden" name="TERMINAL" value="${transaction.terminal}" />
+            <input type="hidden" name="EMAIL" value="${transaction.email}" />
+            <input type="hidden" name="TRTYPE" value="${trtype}" />
+            <input type="hidden" name="COUNTRY" value="${transaction.currency}" />
+            <input type="hidden" name="NONCE" value="${transaction.nonce}" />
+            <input type="hidden" name="BACKREF" value="http://www.test.md/" />
+            <input type="hidden" name="MERCH_GMT" value="2" />
+            <input type="hidden" name="TIMESTAMP" value="${transaction.timestamp}" />
+            <input type="hidden" name="P_SIGN" value="${transaction.p_sign}" />
+            <input type="hidden" name="LANG" value="en" />
+            <input type="hidden" name="MERCH_ADDRESS" value="${transaction.merch_address}" />
+            <input type="hidden" name="RRN" value="${transaction.rrn}" />
+            <input type="hidden" name="INT_REF" value="${transaction.int_ref}" />
+        `;
 
-        const trtypeInput = document.createElement("input")
-        trtypeInput.type = "hidden"
-        trtypeInput.name = "TRTYPE"
-        trtypeInput.value = trtype.toString()
-        form.appendChild(trtypeInput)
-
-        document.body.appendChild(form)
-        form.submit()
-        document.body.removeChild(form)
+        document.body.appendChild(form);
+        form.submit();
     }
 
     const finalizeTransaction = () => {

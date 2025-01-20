@@ -1,7 +1,7 @@
 import type { Transaction } from "../types"
 
 export function getTransactionStatus(transaction: Transaction): string {
-    if (transaction.rc === "00") {
+    if (transaction.trtype === "0") {
         return "Success"
     } else if (transaction.trtype === "24") {
         return "Returnată"
