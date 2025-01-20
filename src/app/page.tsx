@@ -53,7 +53,7 @@ console.log(filteredTransactions, "aasdas")
     { key: "int_ref", label: "Int Ref" },
     { key: "timestamp", label: "Timestamp" },
     { key: "nonce", label: "Nonce" },
-    { key: "", label: "P Sign" },
+    { key: "p_sign", label: "P Sign" },
     { key: "eci", label: "ECI" },
     { key: "text", label: "Text" },
   ]
