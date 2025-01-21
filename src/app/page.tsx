@@ -207,7 +207,7 @@ export default function TransactionManagement() {
                   </div>
                 </div>
               </div>
-              <div className="rounded-md border border-gray-700 overflow-hidden relative z-20 md:z-0 mt-12">
+              <div className="rounded-md border border-gray-700 overflow-hidden relative z-20 md:z-0 mt-12 lg:mt-0">
                 <div className="overflow-x-auto custom-scrollbar">
                   <Table>
                     <TableHeader>
