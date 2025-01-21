@@ -1,25 +1,27 @@
-import React from "react"
-import {Transaction} from "@/app/types";
-import {getStatusColor, getTransactionStatus} from "@/app/utils/transactionStatus";
-import {Button} from "@/app/components/Button";
+import React, { useState } from "react";
+import { Transaction } from "@/app/types";
+import { getStatusColor, getTransactionStatus } from "@/app/utils/transactionStatus";
+import { Button } from "@/app/components/Button";
 
 interface TransactionModalProps {
-    transaction: Transaction
-    onClose: () => void
+    transaction: Transaction;
+    onClose: () => void;
 }
 
 export default function TransactionModal({ transaction, onClose }: TransactionModalProps) {
-    const fieldsToShow = ["terminal", "amount", "currency", "rrn", "status"]
-    const status = getTransactionStatus(transaction)
-    const statusColor = getStatusColor(status)
+    const [amount, setAmount] = useState<any>(transaction.amount);
+    const fieldsToShow = ["terminal", "amount", "currency", "rrn", "status"];
+    const status = getTransactionStatus(transaction);
+    const statusColor = getStatusColor(status);
 
     const submitForm = (url: string, trtype: number) => {
-        const form = document.createElement("form")
-        form.action = url
-        form.method = "POST"
+        const form = document.createElement("form");
+        form.action = url;
+        form.method = "POST";
+        form.target = "_blank";
 
         form.innerHTML = `
-            <input type="hidden" name="AMOUNT" value="${transaction.amount}" />
+            <input type="hidden" name="AMOUNT" value="${amount}" />
             <input type="hidden" name="CURRENCY" value="${transaction.currency}" />
             <input type="hidden" name="ORDER" value="${transaction.ORDER}" />
             <input type="hidden" name="DESC" value="${transaction.desc}" />
@@ -43,22 +45,22 @@ export default function TransactionModal({ transaction, onClose }: TransactionMo
 
         document.body.appendChild(form);
         form.submit();
-    }
+    };
 
     const finalizeTransaction = () => {
-        submitForm("https://ecomt.victoriabank.md/cgi-bin/cgi_link?", 21)
-        onClose()
-    }
+        submitForm("https://ecomt.victoriabank.md/cgi-bin/cgi_link?", 21);
+        onClose();
+    };
 
     const cancelTransaction = () => {
-        submitForm("https://ecomt.victoriabank.md/cgi-bin/cgi_link?", 22)
-        onClose()
-    }
+        submitForm("https://ecomt.victoriabank.md/cgi-bin/cgi_link?", 22);
+        onClose();
+    };
 
     const returnTransaction = () => {
-        submitForm("https://ecomt.victoriabank.md/cgi-bin/cgi_link?", 24)
-        onClose()
-    }
+        submitForm("https://ecomt.victoriabank.md/cgi-bin/cgi_link?", 24);
+        onClose();
+    };
 
     return (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
@@ -83,16 +85,26 @@ export default function TransactionModal({ transaction, onClose }: TransactionMo
                     {fieldsToShow.map((field) => (
                         <div key={field} className="grid grid-cols-2 gap-2 mb-2">
                             <span className="font-medium">{field}:</span>
-                            <span>
-                {field === "status" ? (
-                    <div className="flex items-center">
-                        <div className={`w-2.5 h-2.5 rounded-full mr-2 ${statusColor}`}></div>
-                        {status}
-                    </div>
-                ) : (
-                    transaction[field]
-                )}
-              </span>
+                            {field === "amount" ? (
+                                <input
+                                    type="number"
+                                    value={amount}
+                                    onChange={
+                                    (e) => setAmount(Number(e.target.value))}
+                                    className="bg-gray-800 p-2 rounded text-gray-300"
+                                />
+                            ) : (
+                                <span>
+                                    {field === "status" ? (
+                                        <div className="flex items-center">
+                                            <div className={`w-2.5 h-2.5 rounded-full mr-2 ${statusColor}`}></div>
+                                            {status}
+                                        </div>
+                                    ) : (
+                                        transaction[field]
+                                    )}
+                                </span>
+                            )}
                         </div>
                     ))}
                 </div>
@@ -107,6 +119,5 @@ export default function TransactionModal({ transaction, onClose }: TransactionMo
                 </div>
             </div>
         </div>
-    )
+    );
 }
-
