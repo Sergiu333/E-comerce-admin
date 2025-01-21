@@ -24,7 +24,7 @@ export default function TransactionManagement() {
   const [countFilter, setCountFilter] = useState("10")
   const [selectedTransaction, setSelectedTransaction] = useState<Transaction | null>(null)
   const [isReversed, setIsReversed] = useState(true);
-  const [showFilters, setShowFilters] = useState(false); // Control visibility of filters
+  const [showFilters, setShowFilters] = useState(true); // Control visibility of filters
 
   const [visibleColumns, setVisibleColumns] = useState<{ [key: string]: boolean }>({
     STATUS: true,
