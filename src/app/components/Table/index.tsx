@@ -28,7 +28,7 @@ export const TableHead = ({ children, className = "", ...props }: React.ThHTMLAt
 )
 
 export const TableCell = ({ children, className = "", ...props }: React.TdHTMLAttributes<HTMLTableCellElement>) => (
-    <td className={`px-6 py-4 whitespace-nowrap text-sm text-gray-300 ${className}`} {...props}>
+    <td className={`px-6 py-1 md:py-1.5 3xl:py-3 whitespace-nowrap text-sm text-gray-300 ${className}`} {...props}>
         {children}
     </td>
 )
