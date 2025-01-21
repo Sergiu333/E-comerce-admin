@@ -153,13 +153,13 @@ export default function TransactionManagement() {
                 <div
                     ref={contentRef}
                     className={`transition-opacity transform ${
-                        showFilters ? "opacity-100 scale-100" : "opacity-0 scale-55"
+                        showFilters ? "opacity-100 scale-100" : "opacity-0 scale-55 "
                     } duration-300 ease-in-out`}
                     onTransitionEnd={calculateHeight}
                 >
                   <div>
                     <StatusLegend/>
-                    <div className="flex flex-wrap gap-4 mb-4 mt-6">
+                    <div className="flex flex-wrap gap-3 mb-4 mt-6">
                       <Select onValueChange={setFilter} placeholder="Toate tranzacțiile">
                         <SelectItem value="">Toate tranzacțiile</SelectItem>
                         <SelectItem value="Success">Success</SelectItem>
@@ -207,7 +207,7 @@ export default function TransactionManagement() {
                   </div>
                 </div>
               </div>
-              <div className="rounded-md border border-gray-700 overflow-hidden">
+              <div className="rounded-md border border-gray-700 overflow-hidden relative z-20 md:z-0 mt-12">
                 <div className="overflow-x-auto custom-scrollbar">
                   <Table>
                     <TableHeader>
