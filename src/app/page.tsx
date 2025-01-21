@@ -13,6 +13,7 @@ import "./styles/custom-scrollbar.css"
 import ArrowTop from "@/app/components/icons/ArrowTop";
 import Arrowbottom from "@/app/components/icons/arrowbottom";
 import Link from "next/link";
+import Terminal from "@/app/components/icons/Terminal";
 
 export default function TransactionManagement() {
   const [transactions, setTransactions] = useState<Transaction[]>([])
@@ -148,7 +149,7 @@ export default function TransactionManagement() {
                       className="bg-blue-500 text-white px-4 py-2 rounded"
                       onClick={() => setShowFilters(!showFilters)}
                   >
-                    <div className="flex flex-row gap-1">Terminal</div>
+                    <div className="flex flex-row gap-1"><Terminal/></div>
                   </button>
                 </Link>
               </div>
