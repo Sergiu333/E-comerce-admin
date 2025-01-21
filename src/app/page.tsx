@@ -12,6 +12,7 @@ import { getTransactionStatus, getStatusColor } from "./utils/transactionStatus"
 import "./styles/custom-scrollbar.css"
 import ArrowTop from "@/app/components/icons/ArrowTop";
 import Arrowbottom from "@/app/components/icons/arrowbottom";
+import Link from "next/link";
 
 export default function TransactionManagement() {
   const [transactions, setTransactions] = useState<Transaction[]>([])
@@ -141,6 +142,15 @@ export default function TransactionManagement() {
                       : < div className="flex flex-row gap-1">Arată Filtrele <Arrowbottom/></div>
                   }
                 </button>
+
+                <Link href="https://terminal-gray.vercel.app/" target="_blank">
+                  <button
+                      className="bg-blue-500 text-white px-4 py-2 rounded"
+                      onClick={() => setShowFilters(!showFilters)}
+                  >
+                    <div className="flex flex-row gap-1">Terminal</div>
+                  </button>
+                </Link>
               </div>
             </CardHeader>
             <CardContent>
