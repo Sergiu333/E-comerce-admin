@@ -22,7 +22,7 @@ export default function TransactionManagement() {
   const [terminalFilter, setTerminalFilter] = useState("")
   const [countFilter, setCountFilter] = useState("10")
   const [selectedTransaction, setSelectedTransaction] = useState<Transaction | null>(null)
-  const [isReversed, setIsReversed] = useState(false);
+  const [isReversed, setIsReversed] = useState(true);
   const [showFilters, setShowFilters] = useState(false); // Control visibility of filters
 
   const [visibleColumns, setVisibleColumns] = useState<{ [key: string]: boolean }>({
