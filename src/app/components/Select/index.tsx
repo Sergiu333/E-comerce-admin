@@ -17,7 +17,7 @@ export function Select({ onValueChange, placeholder, children }: SelectProps) {
     }
 
     return (
-        <div className="relative inline-block text-left z-30">
+        <div className="relative inline-block text-left">
             <div>
                 <button
                     type="button"
@@ -41,7 +41,7 @@ export function Select({ onValueChange, placeholder, children }: SelectProps) {
                 </button>
             </div>
             {isOpen && (
-                <div className="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg bg-gray-800 ring-1 ring-black ring-opacity-5">
+                <div className="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg bg-gray-800 ring-1 ring-black ring-opacity-5 z-10">
                     <div className="py-1" role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
                         {React.Children.map(children, (child) => {
                             if (React.isValidElement(child) && child.type === SelectItem) {
