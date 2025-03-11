@@ -1,14 +1,15 @@
-import React, { useState } from "react";
-import { Transaction } from "@/app/types";
-import { getStatusColor, getTransactionStatus } from "@/app/utils/transactionStatus";
-import { Button } from "@/app/components/Button";
+import React, {useState} from "react";
+import {Transaction} from "@/app/types";
+import {getStatusColor, getTransactionStatus} from "@/app/utils/transactionStatus";
+import {Button} from "@/app/components/Button";
 
 interface TransactionModalProps {
-    transaction: Transaction;
-    onClose: () => void;
+    transaction: Transaction,
+    onClose: () => void,
+    prod: boolean,
 }
 
-export default function TransactionModal({ transaction, onClose }: TransactionModalProps) {
+export default function TransactionModal({transaction, onClose, prod}: TransactionModalProps) {
     const [amount, setAmount] = useState<any>(transaction.amount);
     const fieldsToShow = ["terminal", "amount", "currency", "rrn", "status"];
     const status = getTransactionStatus(transaction);
@@ -33,6 +34,7 @@ export default function TransactionModal({ transaction, onClose }: TransactionMo
             <input type="hidden" name="TRTYPE" value="${trtype}" />
             <input type="hidden" name="COUNTRY" value="${transaction.currency}" />
             <input type="hidden" name="NONCE" value="${transaction.nonce}" />
+            <input type="hidden" name="NONCE" value="${transaction.nonce}" />
             <input type="hidden" name="BACKREF" value="http://www.test.md/" />
             <input type="hidden" name="MERCH_GMT" value="2" />
             <input type="hidden" name="TIMESTAMP" value="${transaction.timestamp}" />
@@ -48,17 +50,17 @@ export default function TransactionModal({ transaction, onClose }: TransactionMo
     };
 
     const finalizeTransaction = () => {
-        submitForm("https://ecomt.victoriabank.md/cgi-bin/cgi_link?", 21);
+        submitForm(prod ? "https://vb059.vb.md/cgi-bin/cgi_link" : "https://ecomt.victoriabank.md/cgi-bin/cgi_link?", 21);
         onClose();
     };
 
     const cancelTransaction = () => {
-        submitForm("https://ecomt.victoriabank.md/cgi-bin/cgi_link?", 22);
+        submitForm(prod ? "https://vb059.vb.md/cgi-bin/cgi_link" : "https://ecomt.victoriabank.md/cgi-bin/cgi_link?", 22);
         onClose();
     };
 
     const returnTransaction = () => {
-        submitForm("https://ecomt.victoriabank.md/cgi-bin/cgi_link?", 24);
+        submitForm(prod ? "https://vb059.vb.md/cgi-bin/cgi_link" : "https://ecomt.victoriabank.md/cgi-bin/cgi_link?", 24);
         onClose();
     };
 
@@ -77,7 +79,7 @@ export default function TransactionModal({ transaction, onClose }: TransactionMo
                         viewBox="0 0 24 24"
                         stroke="currentColor"
                     >
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12"/>
                     </svg>
                 </button>
                 <h2 className="text-xl font-bold mb-4 text-gray-100 pr-8">Detalii Tranzacție</h2>
@@ -90,7 +92,7 @@ export default function TransactionModal({ transaction, onClose }: TransactionMo
                                     type="number"
                                     value={amount}
                                     onChange={
-                                    (e) => setAmount(Number(e.target.value))}
+                                        (e) => setAmount(Number(e.target.value))}
                                     className="bg-gray-800 p-2 rounded text-gray-300"
                                 />
                             ) : (

@@ -14,6 +14,7 @@ import ArrowTop from "@/app/components/icons/ArrowTop";
 import Arrowbottom from "@/app/components/icons/arrowbottom";
 import Link from "next/link";
 import Terminal from "@/app/components/icons/Terminal";
+import {Toggle} from "@/app/components/Toggle";
 
 export default function TransactionManagement() {
   const [transactions, setTransactions] = useState<Transaction[]>([])
@@ -128,6 +129,8 @@ export default function TransactionManagement() {
     calculateHeight();
   }, [showFilters]);
 
+  const [isProd, setIsProd] = useState(false);
+
   return (
       <div className="min-h-screen bg-black text-gray-300 py-8">
         <div className="container mx-auto px-4">
@@ -152,6 +155,8 @@ export default function TransactionManagement() {
                     <div className="flex flex-row gap-1"><Terminal/></div>
                   </button>
                 </Link>
+                <Toggle checked={isProd} onChange={setIsProd} />
+
               </div>
             </CardHeader>
             <CardContent>
@@ -261,7 +266,7 @@ export default function TransactionManagement() {
           </Card>
 
           {selectedTransaction && (
-              <TransactionModal transaction={selectedTransaction} onClose={() => setSelectedTransaction(null)}/>
+              <TransactionModal transaction={selectedTransaction} onClose={() => setSelectedTransaction(null)} prod={isProd}/>
           )}
         </div>
       </div>
