@@ -21,7 +21,7 @@ export function Toggle({ checked, onChange }: ToggleProps) {
                 />
             </div>
             <span className="text-sm text-gray-300">
-        {checked ? "Prod" : "Test"}
+        {checked ? "Mediul de producție" : "Mediul de test"}
       </span>
         </label>
     );

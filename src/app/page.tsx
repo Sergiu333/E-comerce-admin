@@ -155,11 +155,16 @@ export default function TransactionManagement() {
                     <div className="flex flex-row gap-1"><Terminal/></div>
                   </button>
                 </Link>
-                <Toggle checked={isProd} onChange={setIsProd} />
-
+                <div className="hidden md:block">
+                  <Toggle checked={isProd} onChange={setIsProd} />
+                </div>
               </div>
             </CardHeader>
+
             <CardContent>
+              <div className="block md:hidden py-2">
+                <Toggle checked={isProd} onChange={setIsProd} />
+              </div>
               <div
                   className={`relative z-20 transition-all duration-500 ease-in-out overflow-hid den mb-5`}
                   style={{
