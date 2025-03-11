@@ -9,7 +9,7 @@ export function Toggle({ checked, onChange }: ToggleProps) {
     return (
         <label className="flex items-center space-x-2 cursor-pointer">
             <div
-                className={`w-10 h-5 flex items-center rounded-full p-1 transition duration-300 ${
+                className={`w-10 h-5 flex items-center rounded-full p-0.5 transition duration-300 ${
                     checked ? "bg-blue-600" : "bg-gray-700"
                 }`}
                 onClick={() => onChange(!checked)}

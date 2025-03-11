@@ -162,15 +162,13 @@ export default function TransactionManagement() {
             </CardHeader>
 
             <CardContent>
-              <div className="block md:hidden py-2">
-                <Toggle checked={isProd} onChange={setIsProd} />
-              </div>
               <div
                   className={`relative z-20 transition-all duration-500 ease-in-out overflow-hid den mb-5`}
                   style={{
                     height: showFilters ? `${contentHeight}px` : "0px",
                   }}
               >
+
                 <div
                     ref={contentRef}
                     className={`transition-opacity transform ${
@@ -178,6 +176,9 @@ export default function TransactionManagement() {
                     } duration-300 ease-in-out`}
                     onTransitionEnd={calculateHeight}
                 >
+                  <div className="block md:hidden py-2">
+                    <Toggle checked={isProd} onChange={setIsProd} />
+                  </div>
                   <div>
                     <StatusLegend/>
                     <div className="flex flex-wrap gap-3 mb-4 mt-6">
